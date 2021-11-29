@@ -4,10 +4,11 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Peoples from "./pages/Peoples/Peoples";
+import { useSelector } from "react-redux";
 
-const isAuth = false;
 
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -22,6 +23,8 @@ function App() {
 
 
 const GuestRoute = ({ children }) => {
+
+  const { isAuth } = useSelector(state => state.auth);
   const location = useLocation();
   if (isAuth)
     return <Navigate to="/people" state={{ from: location }} />
@@ -31,6 +34,8 @@ const GuestRoute = ({ children }) => {
 
 
 const ProtectedRoute = ({ children }) => {
+
+  const { isAuth } = useSelector(state => state.auth);
   const location = useLocation();
   if (!isAuth)
     return <Navigate to="/login" state={{ from: location }} />
