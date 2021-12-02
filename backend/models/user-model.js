@@ -10,7 +10,7 @@ const userSchema = new Schema({
     reportCount: { type: Number, required: true, default: 0 },
 }, { timestamps: true });
 
-const userModel = mongoose.model("users", userSchema);
+const userModel = mongoose.model("user", userSchema);
 
 
 module.exports = userModel;

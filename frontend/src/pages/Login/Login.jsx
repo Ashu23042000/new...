@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import swal from 'sweetalert';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from "../../components/Navbar/Navbar";
 import styles from "./Login.module.css";
 import { login } from "../../http/index";
@@ -11,7 +11,9 @@ import { setAuth, setUser } from "../../store/authSlice";
 
 const Login = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    const nevigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -23,11 +25,12 @@ const Login = () => {
         if (email && password) {
             try {
                 const res = await login(data);
-                console.log(res.data)
                 if (res.status === 200) {
                     dispatch(setAuth(true));
                     dispatch(setUser(res.data.user));
+                    localStorage.setItem("isAuth", true)
                     swal(res.data.message, "", "success");
+                    nevigate("/people");
                 } else if (res.status === 201) {
                     swal(res.data.message, "Try again", "error");
                 } else {

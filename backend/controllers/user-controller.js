@@ -43,21 +43,10 @@ class UserController {
             const comparePass = await userService.comparePassword(password, user.password);
 
             if (comparePass) {
-
-                const { accessToken, refreshToken } = tokenService.generateTokens({ _id: user._id });
-
-                res.cookie("refreshToken", refreshToken, {
-                    maxAge: 1000 * 60 * 60 * 24 * 30,
-                    httpOnly: true
-                });
-
-                res.cookie("accessToken", accessToken, {
-                    maxAge: 1000 * 60 * 60 * 24 * 30,
-                    httpOnly: true
-                });
-
+                
                 const user_dto = new userDto(user);
-                res.status(200).json({ message: "Login Successful", accessToken, refreshToken, user: user_dto });
+
+                res.status(200).json({ message: "Login Successful", user: user_dto });
 
             } else {
                 res.status(201).json({ message: "Password does not match" });

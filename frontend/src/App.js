@@ -4,7 +4,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Peoples from "./pages/Peoples/Peoples";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 
 function App() {
@@ -24,9 +24,10 @@ function App() {
 
 const GuestRoute = ({ children }) => {
 
-  const { isAuth } = useSelector(state => state.auth);
+  // const { isAuth } = useSelector(state => state.auth);
+  const isAuth = localStorage.getItem("isAuth");
   const location = useLocation();
-  if (isAuth)
+  if ((JSON.parse(isAuth)))
     return <Navigate to="/people" state={{ from: location }} />
   else
     return children;
@@ -35,9 +36,13 @@ const GuestRoute = ({ children }) => {
 
 const ProtectedRoute = ({ children }) => {
 
-  const { isAuth } = useSelector(state => state.auth);
+  // const { isAuth } = useSelector(state => state.auth);
+  const isAuth = localStorage.getItem("isAuth");
+
+
+
   const location = useLocation();
-  if (!isAuth)
+  if (!(JSON.parse(isAuth)))
     return <Navigate to="/login" state={{ from: location }} />
   else
     return children;

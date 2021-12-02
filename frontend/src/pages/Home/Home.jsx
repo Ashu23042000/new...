@@ -6,9 +6,17 @@ import { Link } from "react-router-dom";
 
 
 const Home = () => {
+
+    const isAuth = localStorage.getItem("isAuth");
+
     return (
         <>
-            <Navbar menus={[{ title: "Login", link: "login" }, { title: "Signup", link: "signup" }]} />
+            {JSON.parse(isAuth)
+                ?
+                < Navbar menus={[]} />
+                :
+                < Navbar menus={[{ title: "Login", link: "login" }, { title: "Signup", link: "signup" }]} />
+            }
             <main className={styles.main}>
                 <div className={styles.backImg}>
                     <img src="./images/home-bg.jpg" alt="background" />
