@@ -26,9 +26,10 @@ const Login = () => {
             try {
                 const res = await login(data);
                 if (res.status === 200) {
-                    dispatch(setAuth(true));
-                    dispatch(setUser(res.data.user));
-                    localStorage.setItem("isAuth", true)
+                    // dispatch(setAuth(true));
+                    // dispatch(setUser(res.data.user));
+                    localStorage.setItem("isAuth", true);
+                    localStorage.setItem("user", JSON.stringify(res.data.user))
                     swal(res.data.message, "", "success");
                     nevigate("/people");
                 } else if (res.status === 201) {

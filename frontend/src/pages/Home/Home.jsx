@@ -17,7 +17,7 @@ const Home = () => {
                 :
                 < Navbar menus={[{ title: "Login", link: "login" }, { title: "Signup", link: "signup" }]} />
             }
-            <main className={styles.main}>
+            {/* <main className={styles.main}>
                 <div className={styles.backImg}>
                     <img src="./images/home-bg.jpg" alt="background" />
                 </div>
@@ -27,7 +27,7 @@ const Home = () => {
                         live video call.</p>
                     <Link to="/people"><button>Start</button></Link>
                 </div>
-            </main>
+            </main> */}
             <Footer />
         </>
     )

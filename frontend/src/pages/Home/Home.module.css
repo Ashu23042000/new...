@@ -42,10 +42,8 @@
 .sideContent button {
     padding: 0.5rem 3rem;
     background-color: rgb(255, 136, 0);
-    border: none;
     border-radius: 5px;
     font-size: 17px;
-    cursor: pointer;
 }
 
 

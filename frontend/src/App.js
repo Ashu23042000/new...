@@ -4,7 +4,10 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Peoples from "./pages/Peoples/Peoples";
+import Call from "./pages/Call/Call";
 // import { useSelector } from "react-redux";
+
+import { ContextProvider } from "./SocketContext";
 
 
 function App() {
@@ -15,16 +18,25 @@ function App() {
         <Route path="/" exact element={<Home />} />
         <Route path="/login" exact element={<GuestRoute><Login /></GuestRoute>} />
         <Route path="/signup" exact element={<GuestRoute><Signup /></GuestRoute>} />
-        <Route path="/people" exact element={<ProtectedRoute><Peoples /></ProtectedRoute>} />
+        <Route path="/people" exact element={<ProtectedRoute>
+          <ContextProvider>
+            <Peoples />
+          </ContextProvider>
+        </ProtectedRoute>} />
+        <Route path="/call/:from/:to/:caller" exact element={<ProtectedRoute>
+          <ContextProvider>
+            <Call />
+          </ContextProvider>
+        </ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
+
   );
 }
 
 
 const GuestRoute = ({ children }) => {
 
-  // const { isAuth } = useSelector(state => state.auth);
   const isAuth = localStorage.getItem("isAuth");
   const location = useLocation();
   if ((JSON.parse(isAuth)))
@@ -36,7 +48,6 @@ const GuestRoute = ({ children }) => {
 
 const ProtectedRoute = ({ children }) => {
 
-  // const { isAuth } = useSelector(state => state.auth);
   const isAuth = localStorage.getItem("isAuth");
 
 

@@ -43,7 +43,7 @@ class UserController {
             const comparePass = await userService.comparePassword(password, user.password);
 
             if (comparePass) {
-                
+
                 const user_dto = new userDto(user);
 
                 res.status(200).json({ message: "Login Successful", user: user_dto });
