@@ -2,11 +2,10 @@
     height: 50px;
     width: 100vw;
     background-color: rgb(255, 136, 0);
-    
+
     /* background-color: rgb(255, 69, 0); */
 
 }
-
 
 .navbar_wraper {
     display: flex;
@@ -23,10 +22,13 @@
     margin: 15px 10px 10px 0;
 }
 
-.navMenu ul li a {
+/* .navMenu ul li a {
     text-decoration: none;
     color: black;
-}
+} */
+
+
+
 
 .hamburger {
     display: none;
@@ -47,7 +49,7 @@
 }
 
 .logoutBtn {
-    margin: 1rem;
+    /* margin: 1rem; */
     border: none;
     background-color: rgb(255, 136, 0);
     font-size: 1rem;

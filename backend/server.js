@@ -68,7 +68,12 @@ io.on("connection", (socket) => {
 
     socket.on("requestReply", (data) => {
         io.to(data.to).emit("requestReplyFromOther", { to: data.to, from: data.from,reply: data.reply })
-    })
+    });
+
+    socket.on("send", (data) => {
+        console.log(data);
+        io.to(data.to).emit("send", data);
+    });
 
 
 });

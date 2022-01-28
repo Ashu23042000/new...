@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useContext } from 'react';
 import Navbar from "../../components/Navbar/Navbar";
+import swal from 'sweetalert';
 import styles from "./Peoples.module.css";
 import UserCard from '../../components/UserCard/UserCard';
 import { useNavigate } from 'react-router-dom';
@@ -47,9 +48,11 @@ const Peoples = () => {
             setUsers(data);
         });
 
-        socket.on("someOneCallingYou", (data) => {
-            let a = window.confirm(`${data.fromName} wants to talk with you`);
-
+        socket.on("someOneCallingYou", async (data) => {
+            // let a = window.confirm(`${data.fromName} wants to talk with you`);
+            let a = await swal(`${data.fromName} wants to talk with you.`, {
+                buttons: ["Decline", "Accept"],
+            })
             socket.emit("requestReply", { reply: a, to: data.from, from: data.to })
 
 
@@ -61,9 +64,12 @@ const Peoples = () => {
         socket.on("requestReplyFromOther", (data) => {
 
             if (data.reply) {
-                nevigate(`/call/${data.to}/${data.from}/${true}`);
+                nevigate(`/call/${data.from}/${data.to}/${true}`);
             } else {
-                alert("Didn't answer you");
+                // alert("Didn't answer you");
+                swal("Didn't answer you", "", "error", {
+                    button: "Ok",
+                });
             }
         })
 
@@ -78,14 +84,14 @@ const Peoples = () => {
 
     return (
         <>
-            <Navbar menus={[{ title: `${me}`, link: "" }]} />
+            <Navbar menus={[]} />
 
             {
                 <div className={styles.users_grid}>
                     {users && Object.values(users).map((user, index) => {
                         return user.id !== loggedInUser.id ?
                             // return <UserCard key={index} user={user} me={me} />
-                            < div className={styles.users} >
+                            < div className={styles.users} key={index}>
                                 <h2>{user.name}</h2>
                                 <div>
                                     <span>
@@ -101,6 +107,10 @@ const Peoples = () => {
                                 </button>
                             </div>
                             : null;
+
+
+                        //     // return <UserCard key={index} user={user} me={me} />
+
 
                     })}
                 </div>

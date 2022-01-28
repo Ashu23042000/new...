@@ -1,0 +1,92 @@
+.stream_section {
+    width: 100%;
+    min-height: 350px;
+    background-color: rgb(255, 136, 0);
+    display: flex;
+    justify-content: space-around;
+    border-radius: 5px;
+}
+
+.myStream {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 200px;
+    max-height: 300px;
+    margin: auto;
+    background-color: none;
+    border-radius: 5px;
+}
+
+.otherStream {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 200px;
+    max-height: 300px;
+
+    margin: auto;
+    background-color: none;
+
+    border-radius: 5px;
+}
+
+.menus {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.menus i {
+    margin: 0 10px;
+    font-size: 1.5rem;
+}
+
+.endCall {
+    text-decoration: none;
+    /* background-color: blue; */
+}
+
+.endCall button {
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 5px;
+    background-color: rgb(255, 136, 0);
+}
+
+
+
+/* media queries------- */
+
+@media(max-width:700px) {
+    .myStream {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+        display: none;
+    }
+
+    .otherStream {
+        width: 100%;
+        height: 200px;
+        border: none;
+    }
+
+    .menus {
+        width: 90%;
+        margin: 20px auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .menus i {
+        margin: 0 10px;
+        font-size: 1.5rem;
+    }
+
+    .stream_section {
+        width: 90%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}

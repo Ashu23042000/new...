@@ -32,8 +32,10 @@ const Navbar = (props) => {
                     <div className={styles.navMenu}>
                         <ul>
                             {props.menus.map((menu, i) => { return (<li key={i}><Link to={`/${menu.link}`}>{menu.title}</Link></li>) })}
+
+                            {JSON.parse(isAuth) ? <li> <button className={styles.logoutBtn} onClick={logout}>Logout</button></li> : null}
                         </ul>
-                        {JSON.parse(isAuth) ? <button className={styles.logoutBtn} onClick={logout}>Logout</button> : null}
+
                     </div>
 
                     <div className={`${styles.hamburger} ${toggle ? styles.show : null}`} onClick={showMenu} >
